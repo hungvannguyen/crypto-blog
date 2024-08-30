@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="/scss/style.css" rel="stylesheet" type="text/css"/>
+	<title>Document</title>
+	<link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+</head>
+<body>
+
+<header class="navbar-container">
+	<div class="navbar-logo">
+		<img src="/images/logo.png" alt="Logo">
+	</div>
+	<div class="navbar-menu">
+		<div class="navbar-menu-item" x-data="{navMenu:false}" @mouseleave="navMenu = false">
+			<a href="#">
+				<button type="button" class="navbar-menu-button" @click="navMenu = ! navMenu" @mouseover="navMenu = true" >
+					Crypto Insights
+					<svg class="navbar-menu-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+						<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+					</svg>
+				</button>
+			</a>
+			<div x-show="navMenu" @click.outside="navMenu = false"  class="navbar-dropdown" style="display: none">
+				<ul class="navbar-dropdown-list">
+							<li><a href="/category.html">Africa</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="navbar-menu-item">
+			<a href="#">
+				<button type="button" class="navbar-menu-button" >
+					Blockchain
+				</button>
+			</a>
+		</div>
+
+		<div class="navbar-menu-item">
+			<a href="#">
+				<button type="button" class="navbar-menu-button" >
+					How to
+				</button>
+			</a>
+		</div>
+
+		<div class="navbar-menu-item">
+			<a href="#">
+				<button type="button" class="navbar-menu-button" >
+					Option
+				</button>
+			</a>
+		</div>
+
+		<div class="navbar-menu-item">
+			<a href="#">
+				<button type="button" class="navbar-menu-button" >
+					Reviews
+				</button>
+			</a>
+		</div>
+
+		<div class="navbar-menu-item">
+			<a href="#">
+				<button type="button" class="navbar-menu-button" >
+					AI
+				</button>
+			</a>
+		</div>
+	</div>
+
+</header>
+
+
+</body>
+</html>

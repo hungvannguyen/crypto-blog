@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  @apply max-w-8xl mx-auto px-4;
+  font-family: "Lexend";
+}
+
+.max-w-8xl {
+  max-width: 88rem;
+}
+
+.navbar-container {
+  @apply flex justify-between py-4;
+}
+.navbar-logo {
+  @apply xl:w-[180px] xl:h-[75px];
+}
+.navbar-logo img {
+  @apply w-full h-full object-cover;
+}
+.navbar-menu {
+  @apply hidden lg:flex items-center gap-8;
+}
+.navbar-menu-item {
+  @apply relative text-base font-medium;
+}
+.navbar-menu-button {
+  @apply flex gap-2 items-center;
+}
+.navbar-menu-icon {
+  @apply h-6 w-6;
+}
+.navbar-dropdown {
+  @apply absolute lg:flex gap-4 top-12 rounded;
+}
+
+/*# sourceMappingURL=style.css.map */
