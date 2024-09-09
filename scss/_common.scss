@@ -4,3 +4,17 @@ body{
   font-family: 'Lexend';
 }
 
+.section{
+  &-container{
+    @apply max-w-8xl mx-auto my-10;
+  }
+
+  &-content{
+    @apply max-w-8xl mx-auto mt-20 mb-10;
+  }
+
+  &-title{
+    @apply text-4xl text-secondary font-semibold my-10 dark:text-primary;
+  }
+}
+

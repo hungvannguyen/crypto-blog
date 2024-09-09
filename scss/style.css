@@ -6,6 +6,16 @@ body {
   font-family: "Lexend";
 }
 
+.section-container {
+  @apply max-w-8xl mx-auto my-10;
+}
+.section-content {
+  @apply max-w-8xl mx-auto mt-20 mb-10;
+}
+.section-title {
+  @apply text-4xl text-secondary font-semibold my-10 dark:text-primary;
+}
+
 .max-w-8xl {
   max-width: 88rem;
 }
@@ -126,23 +136,95 @@ footer {
   @apply size-6 text-secondary dark:text-primary;
 }
 
+.banner-image {
+  @apply max-h-[218px] md:max-w-[329px] lg:max-w-[429px] lg:max-h-[244px]  xl:max-w-[560px] xl:max-h-[317px] object-cover overflow-hidden rounded-lg;
+}
+.banner-image img {
+  @apply w-full h-full object-cover overflow-hidden rounded-lg;
+}
+.banner-information {
+  @apply flex flex-col space-y-6 justify-between py-2 md:space-y-0 lg:py-4;
+}
+.banner-information p {
+  @apply text-lg text-denary dark:text-quaternary;
+}
+.banner-title {
+  @apply text-5xl font-semibold dark:text-primary;
+}
+.banner-author {
+  @apply dark:underline;
+}
+
+.card-container {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-4 h-[1200px] max-h-[1200px] lg:h-[375px] lg:max-h-[375px] xl:h-[485px] xl:max-h-[485px];
+}
+.card-container-1 {
+  @apply grid grid-cols-2 gap-4;
+}
+.card-container-2 {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-4;
+}
+.card-container-3 {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-10 xl:gap-28;
+}
+.card-wrapper {
+  @apply relative isolate flex flex-col justify-end overflow-hidden rounded-2xl mx-auto px-8 pb-7 h-auto;
+}
+.card-wrapper-1 {
+  @apply relative isolate flex flex-col justify-end overflow-hidden rounded-2xl mx-auto px-5 pb-3 h-auto;
+}
+.card-wrapper-2 {
+  @apply p-4 rounded-md hover:bg-eleven dark:hover:bg-none;
+}
+.card-wrapper-3 {
+  @apply flex gap-6 px-2 justify-center items-center;
+}
+.card-linear {
+  @apply absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/20;
+}
+.card-image {
+  @apply absolute inset-0 h-full w-full object-cover;
+}
+.card-image-1 {
+  @apply w-full h-full max-h-[230px] lg:max-h-[166px] xl:max-h-[216px] object-cover overflow-hidden rounded-xl;
+}
+.card-image-2 {
+  @apply w-full h-full max-h-[117px] max-w-[137px] md:max-h-[114px] md:max-w-[127px] xl:max-h-[147px] xl:max-w-[166px] object-cover overflow-hidden rounded-md;
+}
+.card-content {
+  @apply space-y-5 mt-6;
+}
+.card-title {
+  @apply z-10 text-3xl text-primary font-semibold;
+}
+.card-title-1 {
+  @apply z-10 text-xl text-primary font-semibold line-clamp-2;
+}
+.card-title-2 {
+  @apply text-2xl text-secondary font-semibold line-clamp-2 hover:underline dark:text-primary;
+}
+.card-title-3 {
+  @apply text-2xl text-secondary font-medium line-clamp-2 hover:underline dark:text-primary;
+}
+.card-description {
+  @apply text-sm text-secondary font-normal dark:text-primary line-clamp-2;
+}
+.card-info {
+  @apply text-denary dark:text-eleven;
+}
+.card-author {
+  @apply text-sm  font-semibold underline;
+}
+.card-date {
+  @apply text-sm font-normal;
+}
+
 swiper-container {
   width: 100%;
   height: 100%;
 }
 swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  @apply flex flex-col md:flex-row gap-6 py-12 px-1;
 }
 
 /*# sourceMappingURL=style.css.map */
