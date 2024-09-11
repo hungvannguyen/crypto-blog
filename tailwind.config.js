@@ -16,6 +16,10 @@ export default {
         'nonary':'#EFEFEF',
         'denary':'#575757',
         'eleven':'rgba(99, 99, 99, 0.1)',
+        'twelve':'rgba(99, 99, 99, 0.7)',
+        'thirteen':'rgba(87, 87, 87, 0.7)',
+        'fourteen':'#2C2C2C',
+        'fifteen':'#D9D9D9',
       },
       fontSize: {
         xs: '0.625rem',

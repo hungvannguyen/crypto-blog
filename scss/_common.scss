@@ -4,9 +4,16 @@ body{
   font-family: 'Lexend';
 }
 
+@layer utilities {
+  .text-xs-12 {
+    font-size: 0.75rem;
+  }
+}
+
 .section{
+
   &-container{
-    @apply max-w-8xl mx-auto my-10;
+    @apply max-w-8xl mx-auto my-20;
   }
 
   &-content{
@@ -17,4 +24,5 @@ body{
     @apply text-4xl text-secondary font-semibold my-10 dark:text-primary;
   }
 }
+
 

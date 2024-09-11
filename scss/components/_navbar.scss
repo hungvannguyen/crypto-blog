@@ -1,11 +1,11 @@
 header{
-    @apply max-w-8xl mx-auto;
+    @apply max-w-8xl mx-auto fixed self-start  top-0 left-0 right-0 z-50 ;
 
 }
 
 .navbar {
   &-container {
-    @apply flex justify-between py-4 relative;
+    @apply flex bottom-[calc(100vh-theme(spacing.16))] left-0 right-0 top-0 justify-between py-4 px-2 relative bg-primary dark:bg-secondary;
   }
 
   &-logo {
@@ -102,5 +102,5 @@ header{
 }
 
 #mobile-menu{
-  @apply lg:hidden px-1;
+  @apply lg:hidden px-1 bg-primary dark:bg-secondary;
 }

@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en" x-data="{ darkMode: localStorage.getItem('dark') === 'true' }" x-init="$watch('darkMode', val => localStorage.setItem('dark', val))" x-bind:class="{ 'dark': darkMode }">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="/scss/style.css" rel="stylesheet" type="text/css"/>
+	<title>Document</title>
+	<link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+	/>
+
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+</head>
+<body>
+<!-- Nav -->
+<header x-data="{navMobile:false, navSearch:false, navLang:false }">
+	<nav class="navbar-container">
+		<div class="navbar-logo">
+			<a href="/">
+				<img src="/images/logo.png" alt="Logo">
+			</a>
+		</div>
+
+		<nav class="navbar-menu">
+			<div class="navbar-menu-item" x-data="{ navMenu: false }" @mouseleave="navMenu = false">
+				<button class="navbar-menu-button" @click="navMenu = !navMenu" @mouseover="navMenu = true">
+					Crypto Insights
+					<template x-if="!navMenu">
+						<svg class="navbar-menu-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+						</svg>
+					</template>
+
+					<template x-if="navMenu">
+						<svg class="navbar-menu-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path fill-rule="evenodd" d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832l-3.71 3.938a.75.75 0 01-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01.02 1.06z" clip-rule="evenodd" />
+						</svg>
+					</template>
+				</button>
+				<div x-show="navMenu" @click.outside="navMenu = false" class="navbar-dropdown" style="display: none">
+					<ul>
+						<li><a href="/category.html">Altcoin</a></li>
+						<li><a href="/category.html">Bitcoin</a></li>
+						<li><a href="/category.html">Defi</a></li>
+						<li><a href="/category.html">Ethereum</a></li>
+						<li><a href="/category.html">NFT</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="navbar-menu-item">
+				<button class="navbar-menu-button">Blockchain</button>
+			</div>
+
+			<div class="navbar-menu-item">
+				<button class="navbar-menu-button">How to</button>
+			</div>
+
+			<div class="navbar-menu-item">
+				<button class="navbar-menu-button">Option</button>
+			</div>
+
+			<div class="navbar-menu-item">
+				<button class="navbar-menu-button">Reviews</button>
+			</div>
+
+			<div class="navbar-menu-item">
+				<button class="navbar-menu-button">AI</button>
+			</div>
+
+			<div class="navbar-menu-item" x-data="{ navSearch: false }">
+				<button class="navbar-menu-button" @click="navSearch = !navSearch">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+						<path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
+					</svg>
+				</button>
+				<div x-show="navSearch" @click.outside="navSearch = false" class="navbar-dropdown-search">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="navbar-dropdown-search-icon">
+						<path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
+					</svg>
+
+					<input type="search" placeholder="Search topics">
+
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="navbar-dropdown-search-icon">
+						<path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+					</svg>
+
+				</div>
+			</div>
+
+			<div class="navbar-menu-item">
+				<button class="navbar-menu-button" @click="darkMode = !darkMode">
+					<template x-if="!darkMode">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+						</svg>
+
+					</template>
+
+					<template x-if="darkMode">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+						</svg>
+					</template>
+				</button>
+
+			</div>
+		</nav>
+
+		<div class="navbar-mobile-menu">
+			<button type="button" class="navbar-mobile-button" @click="navMobile = ! navMobile">
+				<span class="sr-only">Open main menu</span>
+				<template x-if="!navMobile">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="navbar-mobile-menu-icon">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+					</svg>
+				</template>
+
+				<template x-if="navMobile">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="navbar-mobile-menu-icon">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+					</svg>
+				</template>
+			</button>
+		</div>
+	</nav>
+
+	<div x-show="navMobile" style="display: none" id="mobile-menu" role="dialog" class="relative">
+
+		<div x-data="{ navSearch: false }">
+			<div class="navbar-mobile-menu-top">
+				<button class="navbar-menu-button" @click="navSearch = !navSearch">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="navbar-mobile-icon">
+						<path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
+					</svg>
+				</button>
+				<div>
+					<button class="navbar-menu-button" @click="darkMode = !darkMode">
+						<template x-if="!darkMode">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="navbar-mobile-menu-icon">
+								<path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+							</svg>
+						</template>
+
+						<template x-if="darkMode">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="navbar-mobile-menu-icon">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+							</svg>
+						</template>
+					</button>
+				</div>
+			</div>
+			<div x-show="navSearch" @click.outside="navSearch = false" class="navbar-dropdown-search">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="navbar-dropdown-search-icon">
+					<path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
+				</svg>
+
+				<input type="search" placeholder="Search topics">
+
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="navbar-dropdown-search-icon">
+					<path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+				</svg>
+
+			</div>
+		</div>
+
+		<div class="navbar-mobile-menu-bottom">
+			<ul class="navbar-mobile-menu-bottom-list">
+				<li class="navbar-mobile-menu-bottom-item" x-data="{ navMenu: false }">
+					<div class="navbar-mobile-menu-bottom-toggle" @click="navMenu = !navMenu">
+						<a class="navbar-mobile-menu-bottom-link">
+							<span>Crypto Insights</span>
+						</a>
+						<template x-if="!navMenu">
+							<svg class="navbar-mobile-menu-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+								<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+							</svg>
+						</template>
+
+						<template x-if="navMenu">
+							<svg class="navbar-mobile-menu-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+								<path fill-rule="evenodd" d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832l-3.71 3.938a.75.75 0 01-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01.02 1.06z" clip-rule="evenodd" />
+							</svg>
+						</template>
+					</div>
+					<ul class="navbar-mobile-menu-bottom-submenu" x-show="navMenu">
+						<li><a href="/category.html">Altcoin</a></li>
+						<li><a href="/category.html">Bitcoin</a></li>
+						<li><a href="/category.html">Defi</a></li>
+						<li><a href="/category.html">Ethereum</a></li>
+						<li><a href="/category.html">NFT</a></li>
+					</ul>
+				</li>
+				<li class="navbar-mobile-menu-bottom-item">
+					<a class="navbar-mobile-menu-bottom-link" href="/category.html">Block Chain</a>
+				</li>
+				<li class="navbar-mobile-menu-bottom-item">
+					<a class="navbar-mobile-menu-bottom-link" href="/category.html">How to</a>
+				</li>
+				<li class="navbar-mobile-menu-bottom-item">
+					<a class="navbar-mobile-menu-bottom-link" href="/category.html">Option</a>
+				</li>
+				<li class="navbar-mobile-menu-bottom-item">
+					<a class="navbar-mobile-menu-bottom-link" href="/category.html">Review</a>
+				</li>
+				<li class="navbar-mobile-menu-bottom-item">
+					<a class="navbar-mobile-menu-bottom-link" href="/category.html">AI</a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+</header>
+<!-- End Nav -->
+
+<!-- Main Content -->
+
+<section>
+
+	<section class="section-container">
+		<!-- Content 1	 -->
+		<div class="breadcrumb-container">
+			<ol>
+				<li><a href="/">Home</a></li>
+				<li><a href="/category.html">Blockchain</a></li>
+			</ol>
+		</div>
+		<!-- End Content 1 -->
+		<!-- 	Content 2	 -->
+		<div class="section-content">
+			<div class="card-container-4">
+				<div class="card-content">
+					<h3 class="card-title-4">Blockchain</h3>
+					<p class="card-description-1">The surge in the popularity of cryptocurrencies is linked to the advancement in both new and existing blockchains. The renewed investor optimism and heightened interest have fueled a rise in blockchain transactions. Stay tuned to learn about blockchain updates to understand how blockchain is securing trust in finance and global trade, and whether it’s just a facade or the future of finance.   </p>
+				</div>
+
+				<div class="card-content-1">
+					<img class="card-image-3" src="https://images.pexels.com/photos/7567236/pexels-photo-7567236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Blockchain">
+				</div>
+			</div>
+		</div>
+		<!-- 	End Content 2	 -->
+
+
+		<!-- 	Content 3	 -->
+		<div class="section-content">
+			<div class="section-title">
+				<h2>Top Blockchain Articles</h2>
+			</div>
+
+			<div class="card-container-5">
+				<a href="post.html" class="card-wrapper col-span-2">
+					<img class="card-image" src="https://images.pexels.com/photos/9588212/pexels-photo-9588212.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Slide 1">
+					<div class="card-linear"></div>
+
+						<p class="card-title">5 Cool Ways Blockchain is changing games</p>
+
+						<p class="card-info-1">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+								<path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
+							</svg>
+
+							By <span class="card-author">Olumide Ogunjobi</span>  |
+							<span class="card-date">28 June 2024</span> </p>
+				</a>
+
+				<div class="card-container-6">
+					<a href="post.html" class="card-wrapper-5">
+						<img class="card-image" src="https://images.pexels.com/photos/7567596/pexels-photo-7567596.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Slide 1">
+						<div class="card-linear"></div>
+							<p class="card-title">Regulatory Developments in Blockchain: What You Need to Know</p>
+
+							<p class="card-info-1">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+									<path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
+								</svg>
+
+								By <span class="card-author">Olumide Ogunjobi</span>  |
+								<span class="card-date">28 June 2024</span> </p>
+					</a>
+
+					<a href="post.html" class="card-wrapper-5">
+						<img class="card-image" src="https://images.pexels.com/photos/7567550/pexels-photo-7567550.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Slide 1">
+						<div class="card-linear"></div>
+							<p class="card-title" >The Role of Blockchain in Modern Banking: Enhancing Security and Efficiency</p>
+							<p class="card-info-1">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+									<path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
+								</svg>
+
+								By <span class="card-author">Olumide Ogunjobi</span>  |
+								<span class="card-date">28 June 2024</span> </p>
+					</a>
+				</div>
+
+
+			</div>
+		</div>
+		<!-- 	End Content 3	 -->
+
+		<!--  Content 4	 -->
+		<section class="section-content">
+			<div class="section-title">
+				<h2>Latest Blockchain Articles</h2>
+			</div>
+
+			<div class="card-container-2">
+
+				<a class="card-wrapper-2" href="post.html">
+					<img class="card-image-1" src="https://images.pexels.com/photos/5126268/pexels-photo-5126268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image">
+					<div class="card-content">
+						<h3 class="card-title-2">Top 10 Cryptocurrencies to Watch in 2024</h3>
+						<p class="card-description">The year 2024 promises to be an exciting one for the cryptocurrency market with many new developments and trends</p>
+						<p class="card-info">By <span class="card-author">Olumide Ogunjobi</span>  | <span class="card-date">28 June 2024</span> </p>
+					</div>
+				</a>
+
+				<a class="card-wrapper-2" href="post.html">
+					<img class="card-image-1" src="https://images.pexels.com/photos/1447418/pexels-photo-1447418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image">
+					<div class="card-content">
+						<h3 class="card-title-2">Cryptocurrency Regulations: What You Need to Know in 2024</h3>
+						<p class="card-description">As cryptocurrencies continue to gain traction globally, regulations surrounding them are evolving rapidly </p>
+						<p class="card-info">By <span class="card-author">Olumide Ogunjobi</span>  | <span class="card-date">28 June 2024</span> </p>
+					</div>
+				</a>
+
+				<a class="card-wrapper-2" href="post.html">
+					<img class="card-image-1" src="https://images.pexels.com/photos/6781340/pexels-photo-6781340.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image">
+					<div class="card-content">
+						<h3 class="card-title-2">The Rise of Stablecoins: The Future of Digital Currency?</h3>
+						<p class="card-description">In the ever-evolving landscape of digital currencies, stablecoins have emerged as a significant player</p>
+						<p class="card-info">By <span class="card-author">Olumide Ogunjobi</span>  | <span class="card-date">28 June 2024</span> </p>
+					</div>
+				</a>
+
+				<a class="card-wrapper-2" href="post.html">
+					<img class="card-image-1" src="https://images.pexels.com/photos/8370745/pexels-photo-8370745.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image">
+					<div class="card-content">
+						<h3 class="card-title-2">Top 5 Crypto Exchanges for Secure Trading in 2024</h3>
+						<p class="card-description">As the cryptocurrency market continues to grow, the importance of security in trading platforms cannot be overstated</p>
+						<p class="card-info">By <span class="card-author">Olumide Ogunjobi</span>  | <span class="card-date">28 June 2024</span> </p>
+					</div>
+				</a>
+
+				<a class="card-wrapper-2" href="post.html">
+					<img class="card-image-1" src="https://images.pexels.com/photos/7887800/pexels-photo-7887800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image">
+					<div class="card-content">
+						<h3 class="card-title-2">Blockchain Beyond Bitcoin: Real-World Applications You Need to Know</h3>
+						<p class="card-description">When people hear "blockchain," they often think of Bitcoin and other cryptocurrencies</p>
+						<p class="card-info">By <span class="card-author">Olumide Ogunjobi</span>  | <span class="card-date">28 June 2024</span> </p>
+					</div>
+				</a>
+
+				<a class="card-wrapper-2" href="post.html">
+					<img class="card-image-1" src="https://images.pexels.com/photos/7567222/pexels-photo-7567222.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image">
+					<div class="card-content">
+						<h3 class="card-title-2">ICO vs IEO: Which is the Better Investment Strategy?</h3>
+						<p class="card-description">The cryptocurrency market offers numerous avenues for investment</p>
+						<p class="card-info">By <span class="card-author">Olumide Ogunjobi</span>  | <span class="card-date">28 June 2024</span> </p>
+					</div>
+				</a>
+
+			</div>
+
+
+		</section>
+		<!-- End Content 4 -->
+
+		<!--  Content 5	 -->
+		<section class="section-content">
+
+			<div class="card-container-7">
+				<div>
+					<div class="section-title">
+						<h2>Latest Articles</h2>
+					</div>
+
+					<div class="card-container-8">
+						<a href="post.html" class="card-wrapper-1">
+							<img class="card-image" src="https://images.pexels.com/photos/6770774/pexels-photo-6770774.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Slide 1">
+							<div class="card-linear"></div>
+							<div class="card-title-1">
+								<p>How to Select a Safe
+									and Reliable Crypto
+									Exchange</p>
+							</div>
+						</a>
+
+						<a href="post.html" class="card-wrapper-1">
+							<img class="card-image" src="https://images.pexels.com/photos/5980877/pexels-photo-5980877.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Slide 1">
+							<div class="card-linear"></div>
+							<div class="card-title-1">
+								<p>Choosing the Right Crypto Wallet: Hot Wallet vs Cold Wallet</p>
+							</div>
+						</a>
+
+						<a href="post.html" class="card-wrapper-1">
+							<img class="card-image" src="https://images.pexels.com/photos/8370757/pexels-photo-8370757.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Slide 1">
+							<div class="card-linear"></div>
+							<div class="card-title-1">
+								<p>Selecting Promising DeFi Projects: Evaluation Criteria</p>
+							</div>
+						</a>
+
+						<a href="post.html" class="card-wrapper-1">
+							<img class="card-image" src="https://images.pexels.com/photos/8369654/pexels-photo-8369654.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Slide 1">
+							<div class="card-linear"></div>
+							<div class="card-title-1">
+								<p>How to Choose a Crypto
+									Trading Strategy that
+									Suits Your Goals</p>
+							</div>
+						</a>
+
+						<a href="post.html" class="card-wrapper-1">
+							<img class="card-image" src="https://images.pexels.com/photos/8369654/pexels-photo-8369654.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Slide 1">
+							<div class="card-linear"></div>
+							<div class="card-title-1">
+								<p>How to Choose a Crypto
+									Trading Strategy that
+									Suits Your Goals</p>
+							</div>
+						</a>
+
+						<a href="post.html" class="card-wrapper-1">
+							<img class="card-image" src="https://images.pexels.com/photos/8369654/pexels-photo-8369654.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Slide 1">
+							<div class="card-linear"></div>
+							<div class="card-title-1">
+								<p>How to Choose a Crypto
+									Trading Strategy that
+									Suits Your Goals</p>
+							</div>
+						</a>
+					</div>
+
+				</div>
+
+				<div>
+					<div>
+					<div class="section-title">
+						<h2>Stay Connected</h2>
+					</div>
+
+						<div class="card-social-container">
+							<div class="card-social-wrapper">
+								<a href="">
+								<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0,0,256,256" class="card-social-icon">
+									<g fill="#00a3ff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8,8)"><path d="M19.25391,2c-3.942,0 -6.25391,2.08217 -6.25391,6.82617v4.17383h-5v5h5v12h5v-12h4l1,-5h-5v-3.32812c0,-1.787 0.58277,-2.67187 2.25977,-2.67187h2.74023v-4.79492c-0.474,-0.064 -1.85509,-0.20508 -3.74609,-0.20508z"></path></g></g>
+								</svg>
+								<div class="card-social-infor">
+									<p class="card-social-name">Facebook</p>
+									<p class="card-social-description">Like us on Facebook</p>
+								</div>
+								</a>
+							</div>
+
+							<div class="card-social-wrapper">
+								<a href="">
+									<svg class="card-social-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 24 24">
+										<path d="M 2.3671875 3 L 9.4628906 13.140625 L 2.7402344 21 L 5.3808594 21 L 10.644531 14.830078 L 14.960938 21 L 21.871094 21 L 14.449219 10.375 L 20.740234 3 L 18.140625 3 L 13.271484 8.6875 L 9.2988281 3 L 2.3671875 3 z M 6.2070312 5 L 8.2558594 5 L 18.033203 19 L 16.001953 19 L 6.2070312 5 z"></path>
+									</svg>
+									<div class="card-social-infor">
+										<p class="card-social-name">X</p>
+										<p class="card-social-description">Follow us on X</p>
+									</div>
+								</a>
+							</div>
+
+							<div class="card-social-wrapper">
+								<a href="">
+									<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0,0,256,256" class="card-social-icon">
+										<g fill="#bd00ff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M16,3c-7.16752,0 -13,5.83248 -13,13v18c0,7.16752 5.83248,13 13,13h18c7.16752,0 13,-5.83248 13,-13v-18c0,-7.16752 -5.83248,-13 -13,-13zM16,5h18c6.08648,0 11,4.91352 11,11v18c0,6.08648 -4.91352,11 -11,11h-18c-6.08648,0 -11,-4.91352 -11,-11v-18c0,-6.08648 4.91352,-11 11,-11zM37,11c-1.10457,0 -2,0.89543 -2,2c0,1.10457 0.89543,2 2,2c1.10457,0 2,-0.89543 2,-2c0,-1.10457 -0.89543,-2 -2,-2zM25,14c-6.06329,0 -11,4.93671 -11,11c0,6.06329 4.93671,11 11,11c6.06329,0 11,-4.93671 11,-11c0,-6.06329 -4.93671,-11 -11,-11zM25,16c4.98241,0 9,4.01759 9,9c0,4.98241 -4.01759,9 -9,9c-4.98241,0 -9,-4.01759 -9,-9c0,-4.98241 4.01759,-9 9,-9z"></path></g></g>
+									</svg>
+									<div class="card-social-infor">
+										<p class="card-social-name">Instagram</p>
+										<p class="card-social-description">Watch us on Instagram</p>
+									</div>
+								</a>
+							</div>
+						</div>
+
+				</div>
+
+					<div>
+						<div class="section-title">
+							<h2>For Further Reference</h2>
+						</div>
+
+						<div class="card-container-9">
+							<a class="card-wrapper-6" href="post.html">
+								<img class="card-image-4" src="https://images.pexels.com/photos/7567519/pexels-photo-7567519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image">
+
+								<div class="card-info-2">
+									<div class="card-content-2">
+									<h3 class="card-title-5">The Impact of Bitcoin Halving: What to Expect in the Upcoming Cycle</h3>
+									<p class="card-description-2">
+									Blockchain technology, known for its decentralized and secure nature, has been a game-changer in the financial industry. </p>
+								</div>
+
+									<p class="card-date-1">
+										<svg class="card-date-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+										</svg>
+											<span>20 Min Read</span>
+									</p>
+								</div>
+							</a>
+
+							<a class="card-wrapper-6" href="post.html">
+								<img class="card-image-4" src="https://images.pexels.com/photos/7567519/pexels-photo-7567519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image">
+
+								<div class="card-info-2">
+									<div class="card-content-2">
+										<h3 class="card-title-5">The Impact of Bitcoin Halving: What to Expect in the Upcoming Cycle</h3>
+										<p class="card-description-2">
+											Blockchain technology, known for its decentralized and secure nature, has been a game-changer in the financial industry. </p>
+									</div>
+
+									<p class="card-date-1">
+										<svg class="card-date-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+										</svg>
+										<span>20 Min Read</span>
+									</p>
+								</div>
+							</a>
+
+							<a class="card-wrapper-6" href="post.html">
+								<img class="card-image-4" src="https://images.pexels.com/photos/7567519/pexels-photo-7567519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image">
+
+								<div class="card-info-2">
+									<div class="card-content-2">
+										<h3 class="card-title-5">The Impact of Bitcoin Halving: What to Expect in the Upcoming Cycle</h3>
+										<p class="card-description-2">
+											Blockchain technology, known for its decentralized and secure nature, has been a game-changer in the financial industry. </p>
+									</div>
+
+									<p class="card-date-1">
+										<svg class="card-date-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+										</svg>
+										<span>20 Min Read</span>
+									</p>
+								</div>
+							</a>
+
+							<a class="card-wrapper-6" href="post.html">
+								<img class="card-image-4" src="https://images.pexels.com/photos/7567519/pexels-photo-7567519.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image">
+
+								<div class="card-info-2">
+									<div class="card-content-2">
+										<h3 class="card-title-5">The Impact of Bitcoin Halving: What to Expect in the Upcoming Cycle</h3>
+										<p class="card-description-2">
+											Blockchain technology, known for its decentralized and secure nature, has been a game-changer in the financial industry. </p>
+									</div>
+
+									<p class="card-date-1">
+										<svg class="card-date-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+										</svg>
+										<span>20 Min Read</span>
+									</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</section>
+		<!-- End Content 3	 -->
+	</section>
+
+
+</section>
+
+<!-- End Main Content -->
+
+<!-- Footer -->
+<footer>
+	<div class="footer-container">
+		<div class="footer-top">
+			<div class="footer-logo">
+				<a href="/">
+					<img src="/images/logo.png" alt="Logo">
+				</a>
+			</div>
+
+			<div class="footer-social">
+
+				<svg class="footer-social-icon" fill="currentColor" width="800px" height="800px" viewBox="0 0 32 32" id="Camada_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;}
+</style><path class="st0" d="M12.6,16.1v11.6c0,0.2,0.1,0.3,0.3,0.3h4.6c0.2,0,0.3-0.1,0.3-0.3V15.9h3.4c0.2,0,0.3-0.1,0.3-0.3l0.3-3.6  c0-0.2-0.1-0.3-0.3-0.3h-3.7V9.2c0-0.6,0.5-1.1,1.2-1.1h2.6C21.9,8.1,22,8,22,7.8V4.3C22,4.1,21.9,4,21.7,4h-4.4  c-2.6,0-4.7,1.9-4.7,4.3v3.4h-2.3c-0.2,0-0.3,0.1-0.3,0.3v3.6c0,0.2,0.1,0.3,0.3,0.3h2.3V16.1z"/></svg>
+
+				<svg class="footer-social-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 24 24">
+					<path d="M 2.3671875 3 L 9.4628906 13.140625 L 2.7402344 21 L 5.3808594 21 L 10.644531 14.830078 L 14.960938 21 L 21.871094 21 L 14.449219 10.375 L 20.740234 3 L 18.140625 3 L 13.271484 8.6875 L 9.2988281 3 L 2.3671875 3 z M 6.2070312 5 L 8.2558594 5 L 18.033203 19 L 16.001953 19 L 6.2070312 5 z"></path>
+				</svg>
+
+				<svg class="footer-social-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 24 24">
+					<path d="M 8 3 C 5.243 3 3 5.243 3 8 L 3 16 C 3 18.757 5.243 21 8 21 L 16 21 C 18.757 21 21 18.757 21 16 L 21 8 C 21 5.243 18.757 3 16 3 L 8 3 z M 8 5 L 16 5 C 17.654 5 19 6.346 19 8 L 19 16 C 19 17.654 17.654 19 16 19 L 8 19 C 6.346 19 5 17.654 5 16 L 5 8 C 5 6.346 6.346 5 8 5 z M 17 6 A 1 1 0 0 0 16 7 A 1 1 0 0 0 17 8 A 1 1 0 0 0 18 7 A 1 1 0 0 0 17 6 z M 12 7 C 9.243 7 7 9.243 7 12 C 7 14.757 9.243 17 12 17 C 14.757 17 17 14.757 17 12 C 17 9.243 14.757 7 12 7 z M 12 9 C 13.654 9 15 10.346 15 12 C 15 13.654 13.654 15 12 15 C 10.346 15 9 13.654 9 12 C 9 10.346 10.346 9 12 9 z"></path>
+				</svg>
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			<!-- Item 1: About Us -->
+			<div class="footer-bottom-item" x-data="{ footerMenu: false, isMobile: (window.innerWidth < 768) }"
+							x-init="isMobile = (window.innerWidth < 768)"
+							x-on:resize.window="isMobile = (window.innerWidth < 768)">
+				<div @click="if (isMobile) { footerMenu = !footerMenu }">
+					<h3 >About us</h3>
+					<template x-if="isMobile && !footerMenu">
+						<svg class="navbar-menu-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+						</svg>
+					</template>
+					<template x-if="isMobile && footerMenu">
+						<svg class="navbar-menu-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path fill-rule="evenodd" d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832l-3.71 3.938a.75.75 0 01-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01.02 1.06z" clip-rule="evenodd" />
+						</svg>
+					</template>
+				</div>
+				<ul x-show="!isMobile || footerMenu" @click.outside="if (isMobile) { footerMenu = false }" class="hidden md:block">
+					<li><a href="/category.html">About logo</a></li>
+					<li><a href="/category.html">Contact</a></li>
+					<li><a href="/category.html">Advertise</a></li>
+					<li><a href="/category.html">Recruitment</a></li>
+				</ul>
+			</div>
+
+			<!-- Item 2: Knowledge -->
+			<div class="footer-bottom-item" x-data="{ footerMenu: false, isMobile: (window.innerWidth < 768) }"
+							x-init="isMobile = (window.innerWidth < 768)"
+							x-on:resize.window="isMobile = (window.innerWidth < 768)">
+				<div @click="if (isMobile) { footerMenu = !footerMenu }">
+					<h3 >Knowledge</h3>
+					<template x-if="isMobile && !footerMenu">
+						<svg class="navbar-menu-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+						</svg>
+					</template>
+					<template x-if="isMobile && footerMenu">
+						<svg class="navbar-menu-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path fill-rule="evenodd" d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832l-3.71 3.938a.75.75 0 01-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01.02 1.06z" clip-rule="evenodd" />
+						</svg>
+					</template>
+				</div>
+				<ul x-show="!isMobile || footerMenu" @click.outside="if (isMobile) { footerMenu = false }" class="hidden md:block">
+					<li><a href="/category.html">Crypto</a></li>
+					<li><a href="/category.html">Technical analysis</a></li>
+					<li><a href="/category.html">Invest</a></li>
+					<li><a href="/category.html">Project Review</a></li>
+				</ul>
+			</div>
+
+			<!-- Item 3: Newbie -->
+			<div class="footer-bottom-item"
+							x-data="{ footerMenu1: false, footerMenu2: false, isMobile: (window.innerWidth < 768) }"
+							x-init="isMobile = (window.innerWidth < 768)"
+							x-on:resize.window="isMobile = (window.innerWidth < 768)">
+
+				<!-- Newbie Section -->
+				<div @click="if (isMobile) { footerMenu1 = !footerMenu1 }">
+					<h3>Newbie</h3>
+					<template x-if="isMobile && !footerMenu1">
+						<svg class="navbar-menu-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+						</svg>
+					</template>
+					<template x-if="isMobile && footerMenu1">
+						<svg class="navbar-menu-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path fill-rule="evenodd" d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832l-3.71 3.938a.75.75 0 01-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01.02 1.06z" clip-rule="evenodd" />
+						</svg>
+					</template>
+				</div>
+				<ul x-show="!isMobile || footerMenu1" @click.outside="if (isMobile) { footerMenu1 = false }" class="hidden md:block">
+					<li><a href="/category.html">Crypto Terminology</a></li>
+					<li><a href="/category.html">Top reputable crypto exchanges</a></li>
+				</ul>
+
+				<!-- Earn Money Section -->
+				<div @click="if (isMobile) { footerMenu2 = !footerMenu2 }">
+					<h3>Earn money</h3>
+					<template x-if="isMobile && !footerMenu2">
+						<svg class="navbar-menu-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+						</svg>
+					</template>
+					<template x-if="isMobile && footerMenu2">
+						<svg class="navbar-menu-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path fill-rule="evenodd" d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832l-3.71 3.938a.75.75 0 01-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01.02 1.06z" clip-rule="evenodd" />
+						</svg>
+					</template>
+				</div>
+				<ul x-show="!isMobile || footerMenu2" @click.outside="if (isMobile) { footerMenu2 = false }" class="hidden md:block">
+					<li><a href="/category.html">Airdrop</a></li>
+				</ul>
+			</div>
+
+
+			<!-- Item 4: Social Network -->
+			<div class="footer-bottom-item" x-data="{ footerMenu: false, isMobile: (window.innerWidth < 768) }"
+							x-init="isMobile = (window.innerWidth < 768)"
+							x-on:resize.window="isMobile = (window.innerWidth < 768)">
+				<div @click="if (isMobile) { footerMenu = !footerMenu }">
+					<h3>Social network</h3>
+					<template x-if="isMobile && !footerMenu">
+						<svg class="navbar-menu-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+						</svg>
+					</template>
+					<template x-if="isMobile && footerMenu">
+						<svg class="navbar-menu-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+							<path fill-rule="evenodd" d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832l-3.71 3.938a.75.75 0 01-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01.02 1.06z" clip-rule="evenodd" />
+						</svg>
+					</template>
+				</div>
+				<ul x-show="!isMobile || footerMenu" @click.outside="if (isMobile) { footerMenu = false }" class="hidden md:block">
+					<li><a href="/category.html">Facebook</a></li>
+					<li><a href="/category.html">Twitter</a></li>
+					<li><a href="/category.html">Youtube</a></li>
+					<li><a href="/category.html">Telegram</a></li>
+					<li><a href="/category.html">TikTok</a></li>
+					<li><a href="/category.html">Linkedln</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+</footer>
+<!-- End Footer -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+</body>
+</html>
