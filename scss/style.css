@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 body {
-  @apply mx-auto px-4 dark:bg-secondary dark:text-primary;
+  @apply mx-auto px-4 dark:bg-secondary dark:text-primary lg:px-1;
   font-family: "Lexend";
 }
 
@@ -12,14 +12,21 @@ body {
     font-size: 0.75rem;
   }
 }
+section {
+  @apply mt-0 lg:mt-28 xl:mt-32;
+}
+
 .section-container {
-  @apply max-w-8xl mx-auto my-20;
+  @apply max-w-8xl mx-auto mb-10 px-2 lg:my-20 xl:px-0;
 }
 .section-content {
-  @apply max-w-8xl mx-auto mt-20 mb-10;
+  @apply max-w-8xl mx-auto mt-10 lg:mt-14;
 }
 .section-title {
-  @apply text-4xl text-secondary font-semibold my-10 dark:text-primary;
+  @apply text-lg lg:text-3xl xl:text-4xl text-secondary font-semibold my-8 dark:text-primary;
+}
+.section-title-1 {
+  @apply text-lg lg:text-3xl xl:text-4xl text-secondary font-semibold mb-8 dark:text-primary;
 }
 
 .max-w-8xl {
@@ -76,10 +83,10 @@ header {
   @apply size-6 text-secondary dark:text-primary;
 }
 .navbar-mobile-menu-top {
-  @apply flex gap-4;
+  @apply flex mx-2 gap-4;
 }
 .navbar-mobile-menu-bottom {
-  @apply mt-4 text-secondary;
+  @apply mt-4 mx-2 pb-4 text-secondary;
 }
 .navbar-mobile-menu-bottom-list {
   @apply flex flex-col gap-4;
@@ -105,7 +112,7 @@ header {
 }
 
 footer {
-  @apply bg-nonary py-2 lg:py-4 dark:bg-tertiary;
+  @apply bg-nonary py-2 mt-40 lg:py-4 dark:bg-tertiary;
 }
 
 .footer-container {
@@ -155,7 +162,7 @@ footer {
   @apply text-lg text-denary dark:text-quaternary;
 }
 .banner-title {
-  @apply text-5xl font-semibold dark:text-primary;
+  @apply text-xl lg:text-4xl xl:text-5xl font-semibold dark:text-primary;
 }
 .banner-author {
   @apply dark:underline;
@@ -166,7 +173,7 @@ footer {
 }
 
 .card-container {
-  @apply grid grid-cols-1 lg:grid-cols-2 gap-4 h-[1200px] max-h-[1200px] lg:h-[375px] lg:max-h-[375px] xl:h-[485px] xl:max-h-[485px];
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-4 h-[735px] max-h-[735px] lg:h-[375px] lg:max-h-[375px] xl:h-[485px] xl:max-h-[485px];
 }
 .card-container-1 {
   @apply grid grid-cols-2 gap-4;
@@ -181,19 +188,19 @@ footer {
   @apply grid grid-cols-1 md:grid-cols-2 gap-10 xl:gap-28;
 }
 .card-container-5 {
-  @apply grid grid-cols-1 lg:grid-cols-3 space-y-6 lg:space-y-0 lg:gap-7 h-[800px] lg:h-[484px] xl:h-[622px];
+  @apply grid grid-cols-1 lg:grid-cols-3 space-y-6 lg:space-y-0 lg:gap-7 h-[504px] lg:h-[484px] xl:h-[622px];
 }
 .card-container-6 {
-  @apply grid grid-cols-2 lg:grid-cols-1 gap-7;
+  @apply grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-6 xl:gap-7 h-[131px] lg:h-[484px] xl:h-[622px];
 }
 .card-container-7 {
-  @apply grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-28;
+  @apply grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-10 xl:gap-28;
 }
 .card-container-8 {
   @apply grid grid-cols-1 lg:grid-cols-2 gap-7 h-[1935px] max-h-[1935px] lg:h-[629px] lg:max-h-[629px] xl:h-[848px] xl:max-h-[848px];
 }
 .card-container-9 {
-  @apply space-y-6;
+  @apply space-y-4 xl:space-y-8;
 }
 .card-container-10 {
   @apply grid grid-cols-1 md:grid-cols-3 gap-4;
@@ -217,13 +224,19 @@ footer {
   @apply relative isolate overflow-hidden rounded-2xl px-5 pb-3 h-auto;
 }
 .card-wrapper-5 {
-  @apply relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-5 pb-3 h-auto;
+  @apply relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-5 pb-3 h-auto max-h-[160px] lg:max-h-[227px] xl:max-h-[296px];
 }
 .card-wrapper-6 {
   @apply flex gap-6 lg:justify-center;
 }
 .card-wrapper-7 {
   @apply flex rounded-md bg-nonary dark:bg-fourteen lg:flex-col max-h-[85px] lg:max-h-[261px] xl:max-h-[350px];
+}
+.card-wrapper-8 {
+  @apply relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-8 pb-7 h-[358px] lg:h-auto lg:max-h-[484px] xl:max-h-[622px];
+}
+.card-wrapper-9 {
+  @apply relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-5 pb-3 h-[310px] lg:h-auto lg:max-h-[191px] xl:max-h-[268px];
 }
 .card-linear {
   @apply absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/20;
@@ -253,7 +266,7 @@ footer {
   @apply relative px-8 inline-block justify-center items-center overflow-hidden drop-shadow-lg;
 }
 .card-content-2 {
-  @apply flex flex-col gap-2;
+  @apply flex flex-col xl:gap-2;
 }
 .card-content-3 {
   @apply flex flex-col gap-2 justify-center lg:mt-6 lg:pb-5 px-5;
@@ -279,6 +292,9 @@ footer {
 .card-title-6 {
   @apply text-base lg:text-2xl xl:text-3xl text-secondary font-semibold dark:text-primary hover:underline;
 }
+.card-title-7 {
+  @apply z-10 text-xs lg:text-base xl:text-2xl text-primary font-semibold hover:underline;
+}
 .card-description {
   @apply text-sm text-secondary font-normal dark:text-primary line-clamp-2;
 }
@@ -292,16 +308,22 @@ footer {
   @apply text-base text-thirteen font-normal dark:text-twelve;
 }
 .card-info {
-  @apply z-10 flex flex-wrap items-center gap-2 text-sm text-denary dark:text-eleven;
+  @apply z-10 flex flex-wrap items-center gap-2 text-sm text-denary dark:text-twelve;
 }
 .card-info-1 {
-  @apply z-10 flex items-center mt-4 gap-2 text-sm text-twelve dark:text-eleven;
+  @apply z-10 flex flex-wrap items-center mt-4 gap-2 text-sm text-twelve dark:text-eleven;
 }
 .card-info-2 {
   @apply flex flex-col justify-between;
 }
+.card-info-3 {
+  @apply z-10 flex flex-wrap items-center gap-2 text-[5px] mt-1 lg:mt-4 lg:text-xs xl:text-sm text-twelve dark:text-eleven;
+}
 .card-author {
   @apply text-sm font-semibold underline;
+}
+.card-author-1 {
+  @apply font-semibold underline;
 }
 .card-date {
   @apply text-sm font-normal;
@@ -311,6 +333,12 @@ footer {
 }
 .card-date-1 {
   @apply flex items-center text-xs gap-2 text-denary dark:text-twelve;
+}
+.card-date-2 {
+  @apply font-normal;
+}
+.card-avatar {
+  @apply size-3 lg:size-5 xl:size-6 rounded-full;
 }
 .card-social-container {
   @apply grid max-w-md grid-cols-2 gap-4;
@@ -335,7 +363,7 @@ footer {
 }
 
 .breadcrumb-container ol {
-  @apply flex mt-28;
+  @apply flex flex-wrap mt-28;
 }
 .breadcrumb-container ol li {
   @apply text-secondary text-sm font-normal after:content-[">"] after:mx-2 after:text-secondary after:last:content-none;
@@ -348,7 +376,7 @@ footer {
   @apply col-span-2;
 }
 .post-wrapper-1 {
-  @apply flex flex-col gap-10 lg:ease-in-out lg:self-start  lg:sticky lg:top-28;
+  @apply flex flex-col gap-10 lg:ease-in-out lg:self-start lg:sticky lg:top-28;
 }
 .post-title {
   @apply text-xl lg:text-3xl xl:text-4xl font-semibold text-secondary dark:text-primary;

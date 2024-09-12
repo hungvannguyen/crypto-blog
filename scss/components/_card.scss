@@ -1,6 +1,6 @@
 .card{
   &-container{
-    @apply grid grid-cols-1 lg:grid-cols-2 gap-4 h-[1200px] max-h-[1200px] lg:h-[375px] lg:max-h-[375px] xl:h-[485px] xl:max-h-[485px];
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-4 h-[735px] max-h-[735px] lg:h-[375px] lg:max-h-[375px] xl:h-[485px] xl:max-h-[485px];
 
     &-1{
         @apply grid grid-cols-2 gap-4;
@@ -19,15 +19,15 @@
     }
 
     &-5{
-      @apply grid grid-cols-1 lg:grid-cols-3 space-y-6 lg:space-y-0 lg:gap-7 h-[800px] lg:h-[484px] xl:h-[622px];
+      @apply grid grid-cols-1 lg:grid-cols-3 space-y-6 lg:space-y-0 lg:gap-7 h-[504px] lg:h-[484px] xl:h-[622px];
     }
 
     &-6{
-      @apply grid grid-cols-2 lg:grid-cols-1 gap-7;
+      @apply grid grid-cols-2 lg:grid-cols-1 gap-2 lg:gap-6 xl:gap-7 h-[131px] lg:h-[484px] xl:h-[622px];
     }
 
     &-7{
-      @apply grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-28;
+      @apply grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-10 xl:gap-28;
     }
 
     &-8{
@@ -35,7 +35,7 @@
     }
 
     &-9{
-      @apply space-y-6;
+      @apply space-y-4 xl:space-y-8;
     }
 
     &-10{
@@ -68,7 +68,7 @@
     }
 
     &-5{
-        @apply relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-5 pb-3 h-auto;
+        @apply relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-5 pb-3 h-auto max-h-[160px] lg:max-h-[227px] xl:max-h-[296px];
     }
 
     &-6{
@@ -77,6 +77,14 @@
 
     &-7{
       @apply flex rounded-md bg-nonary dark:bg-fourteen lg:flex-col max-h-[85px] lg:max-h-[261px] xl:max-h-[350px];
+    }
+
+    &-8{
+      @apply relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-8 pb-7 h-[358px] lg:h-auto lg:max-h-[484px] xl:max-h-[622px];
+    }
+
+    &-9{
+      @apply relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-5 pb-3 h-[310px] lg:h-auto lg:max-h-[191px] xl:max-h-[268px];
     }
 
   }
@@ -117,7 +125,7 @@
     }
 
     &-2{
-        @apply flex flex-col gap-2;
+        @apply flex flex-col xl:gap-2;
     }
 
     &-3{
@@ -151,6 +159,10 @@
     &-6{
         @apply text-base lg:text-2xl xl:text-3xl text-secondary font-semibold dark:text-primary hover:underline;
     }
+
+    &-7{
+      @apply z-10 text-xs lg:text-base xl:text-2xl text-primary font-semibold hover:underline
+    }
   }
 
   &-description{
@@ -171,19 +183,27 @@
   }
 
   &-info{
-    @apply z-10 flex flex-wrap items-center gap-2 text-sm text-denary dark:text-eleven;
+    @apply z-10 flex flex-wrap items-center gap-2 text-sm text-denary dark:text-twelve;
 
     &-1{
-        @apply z-10 flex items-center mt-4 gap-2 text-sm text-twelve dark:text-eleven;
+        @apply z-10 flex flex-wrap items-center mt-4 gap-2 text-sm text-twelve dark:text-eleven;
     }
 
     &-2{
         @apply flex flex-col justify-between;
     }
+
+    &-3{
+        @apply z-10 flex flex-wrap items-center gap-2 text-[5px] mt-1 lg:mt-4 lg:text-xs xl:text-sm text-twelve dark:text-eleven;
+    }
   }
 
   &-author{
     @apply text-sm font-semibold underline;
+
+    &-1{
+        @apply font-semibold underline;
+    }
   }
 
   &-date{
@@ -196,7 +216,15 @@
     &-1{
       @apply flex items-center text-xs gap-2 text-denary dark:text-twelve;
     }
+
+    &-2{
+      @apply font-normal;
     }
+  }
+
+  &-avatar{
+    @apply size-3 lg:size-5 xl:size-6 rounded-full;
+  }
 
   &-social{
 

@@ -66,11 +66,11 @@ header{
       }
 
       &-top{
-        @apply flex gap-4;
+        @apply flex mx-2 gap-4;
       }
 
       &-bottom{
-        @apply mt-4 text-secondary;
+        @apply mt-4 mx-2 pb-4 text-secondary;
 
         &-list{
             @apply flex flex-col gap-4;

@@ -16,7 +16,7 @@
   }
 
     &-title{
-        @apply text-5xl font-semibold dark:text-primary;
+        @apply text-xl lg:text-4xl xl:text-5xl font-semibold dark:text-primary;
     }
 
   &-author{

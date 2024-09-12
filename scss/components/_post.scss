@@ -7,7 +7,7 @@
     @apply col-span-2;
 
     &-1{
-      @apply flex flex-col gap-10 lg:ease-in-out lg:self-start  lg:sticky lg:top-28;
+      @apply flex flex-col gap-10 lg:ease-in-out lg:self-start lg:sticky lg:top-28;
     }
   }
   &-title{
@@ -34,7 +34,7 @@
     @apply mt-20;
 
     &-wrapper{
-        @apply mt-10 flex flex-col gap-4;
+        @apply mt-10 flex flex-col gap-4 ;
 
       p{
         @apply text-xs lg:text-sm xl:text-base text-secondary dark:text-primary;
