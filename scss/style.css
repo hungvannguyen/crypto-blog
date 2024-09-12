@@ -112,7 +112,7 @@ header {
 }
 
 footer {
-  @apply bg-nonary py-2 mt-40 lg:py-4 dark:bg-tertiary;
+  @apply bg-nonary py-2 mt-10 lg:mt-40 lg:py-4 dark:bg-tertiary;
 }
 
 .footer-container {
@@ -370,7 +370,7 @@ footer {
 }
 
 .post-container {
-  @apply grid grid-cols-1 lg:grid-cols-3 gap-10 mt-20 lg:gap-20;
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-10 mt-10 lg:mt-20 lg:gap-20;
 }
 .post-wrapper {
   @apply col-span-2;
